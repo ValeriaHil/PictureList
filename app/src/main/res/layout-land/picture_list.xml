@@ -26,6 +26,7 @@
                                             android:layout_weight="1"
                                             android:layout_height="match_parent"
                                             android:layout_marginRight="16dp"
+                                            app:layoutManager="LinearLayoutManager"
                                             tools:context="com.example.lenovo.hw2.PictureListActivity"
                                             tools:listitem="@layout/picture_list_content"/>
 

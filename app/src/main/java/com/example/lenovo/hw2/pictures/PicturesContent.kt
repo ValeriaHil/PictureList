@@ -26,7 +26,7 @@ object PicturesContent {
         downloadTask.execute(URL("https://api.unsplash.com/search/photos/?query=fox&per_page=50&client_id=e8a568ad7a5910210a5c3f94fb63c6e43e4a53eb40a20c4f512def554dd79fe2"))
         val pictureJson = downloadTask.get()
         val array = pictureJson.getAsJsonArray("results")
-        for(i in 0..min(array.size(), COUNT)) {
+        for(i in 0..min(array.size(), COUNT - 1)) {
             val description = array[i].asJsonObject.get("description").asString
             val download = array[i].asJsonObject.getAsJsonObject("links").get("download").asString
             val preview = array[i].asJsonObject.getAsJsonObject("urls").get("thumb").asString
