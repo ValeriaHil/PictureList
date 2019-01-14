@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.RecyclerView
-import android.support.design.widget.Snackbar
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
@@ -15,9 +14,9 @@ import com.example.lenovo.hw2.pictures.PicturesContent
 import kotlinx.android.synthetic.main.activity_picture_list.*
 import kotlinx.android.synthetic.main.picture_list_content.view.*
 import kotlinx.android.synthetic.main.picture_list.*
-import android.os.StrictMode
 import android.widget.ImageView
 import com.squareup.picasso.Picasso
+import android.support.v4.content.ContextCompat
 
 
 /**
@@ -39,16 +38,12 @@ class PictureListActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         toolbar.title = title
 
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
-        }
-
         if (picture_detail_container != null) {
             twoPane = true
         }
 
         setupRecyclerView(picture_list)
+
     }
 
     private fun setupRecyclerView(recyclerView: RecyclerView) {
@@ -95,8 +90,8 @@ class PictureListActivity : AppCompatActivity() {
 
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
             val item = values[position]
-//            holder.idView.text = (position + 1).toString()
             holder.contentView.text = item.description
+            ContextCompat.checkSelfPermission(parentActivity, "INTERNET")
             Picasso.get().load(item.preview).into(holder.imageView)
             with(holder.itemView) {
                 tag = item

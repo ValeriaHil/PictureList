@@ -1,6 +1,7 @@
 package com.example.lenovo.hw2.pictures
 
 import android.os.AsyncTask
+import android.support.v4.content.ContextCompat
 import android.util.Log
 import com.google.gson.JsonElement
 import com.google.gson.JsonObject
@@ -19,7 +20,7 @@ object PicturesContent {
 
     val ITEM_MAP: MutableMap<String, PictureItem> = HashMap()
 
-    private val COUNT = 6
+    private val COUNT = 15
 
     init {
         val downloadTask = DownloadPicturesAsyncTask(WeakReference(this))
@@ -57,9 +58,9 @@ object PicturesContent {
         private val logTag = "ASYNC_TASK"
         private lateinit var jsonResponse: JsonObject
 
-
         override fun doInBackground(vararg params: URL) : JsonObject {
             Log.d(logTag, "Downloading from ${params[0].toString()}")
+
             val response = params[0].openConnection().run {
                 Log.d(logTag, "Opened Connection")
                 connect()
